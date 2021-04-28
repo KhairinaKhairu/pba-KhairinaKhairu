@@ -36,7 +36,7 @@ $ git submodule update --init 3rd_party/delfem2
 
    
 
-=== Paste the screen shot here ![preview](task1_screenshot.PNG) ===
+=== Paste the screen shot here`![](<image file name>)` ===
 
 
 
@@ -45,16 +45,6 @@ $ git submodule update --init 3rd_party/delfem2
 Modify `main.cpp` to collide points with the circular obstacle in the middle (see around 92th line of the code). Just 4 or 5 lines of codes need to be modifiled. We assume that the **coefficient of restitution** is one.
 
 
-=== Paste the screen shot here ===
-
-I made two versions since both of them looks interesting.
-
-1 - the points are moving inside circle
-![preview](task1_screenshot_problem2_v1.PNG)
-
-2 - the points are colliding outside the circle
-![preview](task1_screenshot_problem2_v2.PNG)
-
-  
+=== Paste the screen shot here`![](<image file name>)`  ===
 
 
