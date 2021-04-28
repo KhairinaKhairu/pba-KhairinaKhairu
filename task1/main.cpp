@@ -5,6 +5,9 @@
 #include <random>
 #include <cstdlib>
 #include <cstdio>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 // print out error
 static void error_callback(int error, const char* description){
@@ -90,10 +93,14 @@ void simulate(
         float vnorm = p.velo[0]*norm[0] + p.velo[1]*norm[1]; // normal component of the velocity
         ////////////////////////////
         // write something below !
-//        p.velo[0] =
-//        p.velo[1] =
-//        p.pos[0] =
-//        p.pos[1] =
+        p.velo[0] = p.velo[0]+0.01;
+        p.velo[1] = p.velo[1]+0.01;
+        // points moving inside circle only
+        p.pos[0] = 0.5+p.velo[0] * dt;
+        p.pos[1] = 0.5+p.velo[1] * dt;
+        // points collide outside circle
+        //p.pos[0] = 0.2-p.velo[0]*dx;
+        //p.pos[1] = 0.2-p.velo[1]*dy;
       }
     }
   }
