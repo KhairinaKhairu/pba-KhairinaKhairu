@@ -129,14 +129,20 @@ void collision_detection(
   std::sort(aPosIndex.begin(),aPosIndex.end()); // sort array by quick sort
   std::set<unsigned int> stack;
   for(auto& pi : aPosIndex){
-//    std::cout << pi.p << " " << pi.is_start << " " << pi.icircle << std::endl;
+ //   std::cout << pi.p << " " << pi.is_start << " " << pi.icircle << std::endl;
     if( pi.is_start ){ // enter the range of the circle
       unsigned int ic0 = pi.icircle;
       // ----------------------------------------------
-      // write some codes here (probably 5 - 10 lines)
-      // use the function "is_collide()" at line #102
-      // ----------------------------------------------
-      stack.insert(ic0);
+        for (unsigned int ic = 0; ic < ic0; ++ic) {
+            // write some codes here (probably 5 - 10 lines)
+            // use the function "is_collide()" at line #102
+            if (is_collide(aCircle[ic], aCircle[ic0], rad) == true) {
+                // ----------------------------------------------
+                aCircle[ic].is_collided = true;
+                aCircle[ic0].is_collided = true;      
+            }
+        }
+        stack.insert(ic0);
     }
     else{ // exit the range of the circle
       stack.erase(pi.icircle);
