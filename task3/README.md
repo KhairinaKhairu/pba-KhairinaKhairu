@@ -32,7 +32,7 @@ $ git submodule update --init 3rd_party/delfem2
 Build the program using `cmake`. Run the program and take a screenshot image of the window. (You will probably see some *undesirable* animation and that's OK). Paste the screenshot image below by editing this mark down document:
 
 === paste screenshot here ===
-
+![problem_1](task3_problem_1.png)
 
 
 
@@ -50,7 +50,7 @@ Fill the code around line #56 to compute the correct hessian of the energy (abou
 Paste the screenshot image of converged deformation below:
 
 == paste screenshot image here==
-
+![problem_2](task3_problem_2.png)
 
 
 
