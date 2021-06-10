@@ -103,18 +103,23 @@ void Optimize(
     // making corff. matrix and rhs vector
     // ---------------
     // write some codes below
+    lambda = W / G;
     for(int idim=0;idim<2;++idim) {
-      for(int jdim=0;jdim<2;++jdim) {
+           for(int jdim=0;jdim<2;++jdim) {
+        
         matA(ip0 * 2 + idim, ip0 * 2 + jdim) += ddW[0][0][idim][jdim];
         matA(ip0 * 2 + idim, ip1 * 2 + jdim) += ddW[0][1][idim][jdim];
         matA(ip1 * 2 + idim, ip0 * 2 + jdim) += ddW[1][0][idim][jdim];
         matA(ip1 * 2 + idim, ip1 * 2 + jdim) += ddW[1][1][idim][jdim];
       }
+      
       vecB(ip0*2+idim) += dW[0][idim];
       vecB(ip1*2+idim) += dW[1][idim];
       // write something around here to put the areal constraint
       // Note that the "np*2"-th DoF is for the Lagrange multiplier
     }
+    vecB(ip0 * 2) = -ddW[0][0][0][0] * dW[0][0] + ddW[0][0][0][0] * lambda * dG[0][0] + lambda * ddG[0][0][0][0] * dW[0][0] - lambda * lambda * ddG[0][0][0][0] * dG[0][0] + dG[0][1] * G;
+    vecB(ip1 * 2) = dG[1][0] * dW[0][0] - lambda * dG[1][0] * dG[0][0];
   }
 
   // no further modification below
