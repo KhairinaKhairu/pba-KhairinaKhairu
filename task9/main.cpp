@@ -122,7 +122,23 @@ int main()
             aMass[aQuad[iq*4+3]] };
         // write some code below to rigidly transform the points in the rest shape (`aq`) such that the
         // weighted sum of squared distances against the points in the tentative shape (`qp`) is minimized (`am` is the weight).
+        Eigen::Matrix2f R = Eigen::Matrix2f::Zero();
+        float Msum = am[0] + am[1] + am[2] + am[3];
 
+        Eigen::JacobiSVD< Eigen::MatrixXf> svd(R,Eigen::ComputeThinU | Eigen::ComputeThinV);
+        Eigen::MatrixXf U = svd.matrixU() * svd.singularValues().asDiagonal();
+        Eigen::MatrixXf V = svd.matrixV();
+        Eigen::Matrix2f R_opt = U * V.transpose();
+        Eigen::Vector2f t_opt[4] = {
+            am[0] * ap[0] / Msum - R * ((am[0] * aq[0]) / Msum) ,
+            am[1] * ap[1] / Msum - R * ((am[1] * aq[1]) / Msum) ,
+            am[2] * ap[2] / Msum - R * ((am[2] * aq[2]) / Msum) ,
+            am[3] * ap[3] / Msum - R * ((am[3] * aq[3]) / Msum) };
+
+     //   ap[0] = R_opt * aq[0] + t_opt[0];
+     //   ap[1] = R_opt * aq[1] + t_opt[1];
+     //   ap[2] = R_opt * aq[2] + t_opt[2];
+     //   ap[3] = R_opt * aq[3] + t_opt[3];
 
         // no edits further down
       }
